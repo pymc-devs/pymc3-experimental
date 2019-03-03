@@ -5,6 +5,7 @@ import theano.tensor as tt
 
 from sgmcmc import SGFS
 
+
 def test_minibatch():
     draws = 3000
     mu0 = 1
@@ -36,6 +37,7 @@ def test_minibatch():
         trace = pm.sample(draws=draws, step=step_method, init=None, cores=2)
 
     np.testing.assert_allclose(np.mean(trace['abc'], axis=0), np.asarray([a, b, c]), rtol=0.1)
-    
+
+
 if __name__ == '__main__':
     test_minibatch()
