@@ -1,0 +1,30 @@
+language: python
+sudo: required
+
+cache:
+  directories:
+    - $HOME/.theano
+    - $HOME/miniconda3
+
+addons:
+  apt_packages:
+    - pandoc
+
+before_install:
+  - . ./scripts/install_miniconda.sh
+  - sh -e /etc/init.d/xvfb start
+  - export DISPLAY=":99.0"
+  - export MKL_THREADING_LAYER=GNU
+
+install:
+  # - . ./scripts/create_testenv.sh   TODO: Modify create_testenv to install pymc3 and build from setup.py of pymc3-experimental
+  - pip install coveralls
+
+env:
+
+script:
+  # - . ./scripts/test.sh $TESTCMD
+  # - . ./scripts/confirm_mpl_optional.sh
+
+after_success:
+  - coveralls
