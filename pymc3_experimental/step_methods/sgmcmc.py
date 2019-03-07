@@ -1,19 +1,11 @@
-from collections import OrderedDict
-import warnings
-
-from pymc3.step_methods.arraystep import Competence, ArrayStepShared
-from pymc3.vartypes import continuous_types
-from pymc3.model import modelcontext, inputvars
-import theano.tensor as tt
-from pymc3.theanof import tt_rng, make_shared_replacements
+from pymc3.step_methods.arraystep import Competence
 from pymc3.step_methods.sgmcmc import BaseStochasticGradient
+from pymc3.vartypes import continuous_types
+import theano.tensor as tt
 import theano
 import numpy as np
 
 __all__ = ['SGFS', 'CSG']
-
-EXPERIMENTAL_WARNING = "Warning: Stochastic Gradient based sampling methods are experimental step methods and not yet"\
-    " recommended for use in PyMC3!"
 
 
 class SGFS(BaseStochasticGradient):
