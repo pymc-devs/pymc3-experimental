@@ -12,7 +12,7 @@ AUTHOR_EMAIL = 'pymc.devs@gmail.com'
 URL = "http://github.com/pymc-devs/pymc3-experimental"
 LICENSE = "Apache License, Version 2.0"
 
-classifiers = ['Development Status :: 5 - Production/Stable',
+classifiers = ['Development Status :: 2 - Pre-Alpha',
                'Programming Language :: Python',
                'Programming Language :: Python :: 3',
                'Programming Language :: Python :: 3.5',
