@@ -1,19 +1,18 @@
 import numpy as np
 import pymc3 as pm
 from pymc3 import Model, Normal
+import pymc3_experimental as pmexp
 import theano.tensor as tt
-
-from sgmcmc import SGFS
 
 
 def test_minibatch():
     draws = 3000
     mu0 = 1
     sd0 = 1
-    
+
     def f(x, a, b, c):
         return a*x**2 + b*x + c
-    
+
     a, b, c = 1, 2, 3
 
     batch_size = 50
@@ -33,11 +32,7 @@ def test_minibatch():
         y = X.dot(abc)
         pm.Normal('y', mu=y, observed=y_obs)
 
-        step_method = SGFS(batch_size=batch_size, step_size=1., total_size=total_size)
+        step_method = pmexp.SGFS(batch_size=batch_size, step_size=1., total_size=total_size)
         trace = pm.sample(draws=draws, step=step_method, init=None, cores=2)
 
     np.testing.assert_allclose(np.mean(trace['abc'], axis=0), np.asarray([a, b, c]), rtol=0.1)
-
-
-if __name__ == '__main__':
-    test_minibatch()
